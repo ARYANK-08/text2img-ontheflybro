@@ -1,4 +1,3 @@
----
 
 **Noobshot.ai** 🚀: Turn ideas and imagination into images in milliseconds. ✨
 
@@ -45,4 +44,4 @@
 ## Access 🔗
 Visit `http://127.0.0.1:5000` in your browser. 🌐
 
---- 
+
