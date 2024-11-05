@@ -77,6 +77,7 @@ async def store_email_route():
         return jsonify({"message": "Email stored successfully!"}), 200
     except Exception as e:
         return jsonify({"message": f"Failed to store email: {str(e)}"}), 500
+
 if __name__ == '__main__':
     if not API_KEY:
         print("Warning: TOGETHER_API_KEY environment variable not set!")
