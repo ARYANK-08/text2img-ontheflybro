@@ -276,7 +276,7 @@
                 $('.setup-instructions').slideToggle();
             });
 
-            $('#submitEmail').click(function() {
+            {% comment %} $('#submitEmail').click(function() {
                 const email = $('#email').val();
                 if (email) {
                     $.ajax({
@@ -295,7 +295,7 @@
                 } else {
                     alert('Please enter your email.');
                 }
-            });
+            }); {% endcomment %}
             
             // Function to generate an image
             function generateImage() {

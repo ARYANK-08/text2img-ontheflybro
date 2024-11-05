@@ -22,15 +22,15 @@ except Exception as e:
     print(f"Error initializing Together client: {str(e)}")
     client = None
 
-# Database configuration
-tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
-DATABASE_URL = f"postgresql+asyncpg://{tmpPostgres.username}:{tmpPostgres.password}@{tmpPostgres.hostname}{tmpPostgres.path}?ssl=require"
+# # Database configuration
+# tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
+# DATABASE_URL = f"postgresql+asyncpg://{tmpPostgres.username}:{tmpPostgres.password}@{tmpPostgres.hostname}{tmpPostgres.path}?ssl=require"
 
-async def store_email(email):
-    engine = create_async_engine(DATABASE_URL, echo=True)
-    async with engine.begin() as conn:  # Start transaction with engine.begin()
-        await conn.execute(text("INSERT INTO emails (email) VALUES (:email)"), {"email": email})
-    await engine.dispose()
+# async def store_email(email):
+#     engine = create_async_engine(DATABASE_URL, echo=True)
+#     async with engine.begin() as conn:  # Start transaction with engine.begin()
+#         await conn.execute(text("INSERT INTO emails (email) VALUES (:email)"), {"email": email})
+#     await engine.dispose()
 
 @app.route('/', methods=['GET'])
 def home():
@@ -64,19 +64,19 @@ def generate_image():
     except Exception as e:
         return jsonify({'error': f"Error generating image: {str(e)}"}), 500
 
-@app.route('/store-email', methods=['POST'])
-async def store_email_route():
-    data = request.get_json()
-    email = data.get('email')
+# @app.route('/store-email', methods=['POST'])
+# async def store_email_route():
+#     data = request.get_json()
+#     email = data.get('email')
 
-    if not email:
-        return jsonify({"message": "Email is required!"}), 400
+#     if not email:
+#         return jsonify({"message": "Email is required!"}), 400
 
-    try:
-        await store_email(email)
-        return jsonify({"message": "Email stored successfully!"}), 200
-    except Exception as e:
-        return jsonify({"message": f"Failed to store email: {str(e)}"}), 500
+#     try:
+#         await store_email(email)
+#         return jsonify({"message": "Email stored successfully!"}), 200
+#     except Exception as e:
+#         return jsonify({"message": f"Failed to store email: {str(e)}"}), 500
 
 if __name__ == '__main__':
     if not API_KEY:
