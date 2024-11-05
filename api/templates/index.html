@@ -276,27 +276,6 @@
                 $('.setup-instructions').slideToggle();
             });
 
-            {% comment %} $('#submitEmail').click(function() {
-                const email = $('#email').val();
-                if (email) {
-                    $.ajax({
-                        url: '/store-email',
-                        method: 'POST',
-                        contentType: 'application/json',  // Set content type to JSON
-                        data: JSON.stringify({ email: email }),  // Convert to JSON string
-                        success: function(response) {
-                            alert('Email submitted successfully: ' + email);
-                            $('#email').val(''); // Clear the input field
-                        },
-                        error: function(xhr) {
-                            alert(xhr.responseJSON?.message || 'An error occurred');
-                        }
-                    });
-                } else {
-                    alert('Please enter your email.');
-                }
-            }); {% endcomment %}
-            
             // Function to generate an image
             function generateImage() {
                 const prompt = $('#prompt').val();
