@@ -1,5 +1,4 @@
 
-</div>
 | Image 1 | Image 2 |
 |:---:|:---:|
 | ![Image 1](https://github.com/user-attachments/assets/b7f731a5-8455-4b99-be5d-4174bbb0ecf4) | ![Image 2](https://github.com/user-attachments/assets/2017912e-58ec-4792-952b-60d2570f49c1) |
