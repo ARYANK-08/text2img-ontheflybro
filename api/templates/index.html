@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Image Generator</title>
+    <title>noobshot.ai</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
         /* Import custom font */
@@ -19,71 +20,46 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh; /* Allow the body to take full height */
             margin: 0;
             background-color: #000;
             color: #edecec;
             font-family: "Geist", Arial, sans-serif;
+            overflow-y: auto; /* Allow body scrolling */
         }
 
-        /* Container for centered content */
-        .container {
+        .navbar {
+            position: fixed; /* Change to fixed */
+            top: 5px; /* Stick to the top */
+            left: 0; /* Align to the left */
+            right: 0; /* Align to the right */
+            text-align: center;
+            width: 100%;
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            background-color: rgba(0, 0, 0, 0.8); /* Optional: Add background for visibility */
+            z-index: 1000; /* Ensure it is on top */
+        }
+        
+        .navbar h2 {
+            margin: 0;
+            font-size: 28px;
+            color: white;
+            margin-right: 20px; /* Add some space between title and icons */
+        }
+
+        /* Input area */
+        .input-group {
             text-align: center;
             width: 90%;
             max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #0b0b0a;
-            border: 1px solid #444;
-            border-radius: 10px;
-            color: #edecec;
-        }
-
-        /* Cool Gradient Heading */
-        h1 {
-            font-size: 32px;
-            margin-bottom: 20px;
-            background-color: white;
-            background-image: linear-gradient(0deg, white 60%, #000000);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-family: "Geist";
-            --wght-min: 32;
-            --wght-max: 240;
-            animation: breath 1.5s alternate ease-in-out infinite;
-            animation-delay: 1s;
-        }
-
-        @keyframes breath {
-            0% {
-                font-variation-settings: "wght" var(--wght-min);
-            }
-            100% {
-                font-variation-settings: "wght" var(--wght-max);
-            }
-        }
-
-        /* Warning styling */
-        .api-warning {
-            background-color: #2e2e2e;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-
-        /* Setup instructions */
-        .setup-instructions {
-            font-size: 14px;
-            color: #bbbbbb;
-            text-align: left;
-            display: none;
+            margin: 20px 0;
         }
 
         /* Textarea for prompt input */
         textarea {
-            width: 85%;
+            width: 100%;
             padding: 15px;
             font-size: 16px;
             background-color: #1f1f1f;
@@ -110,9 +86,9 @@
             font-size: 14px;
         }
 
-        /* Larger image display */
+        /* Separate div for the generated image */
         .image-container {
-            margin-top: 40px; /* Increased space from the container */
+            margin-top: 20px;
             text-align: center;
         }
 
@@ -146,11 +122,99 @@
             height: 100%;
             object-fit: cover;
         }
+
+        /* Email Subscription Field */
+        #emailField {
+            background-color: #0b0b0a;
+            border: 1px solid #444;
+            padding: 10px;
+            border-radius: 5px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center; /* Center items vertically */
+        }
+        
+        #email {
+            background-color: #0b0b0a; /* Match card color */
+            border: 1px solid #555;
+            padding: 10px;
+            border-radius: 5px;
+            color: #edecec;
+            width: 70%; /* Adjust width to fit side by side */
+        }
+        
+        #submitEmail {
+            background-color: #444; /* Button background */
+            color: #edecec; /* Button text color */
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px; /* Add horizontal padding */
+            cursor: pointer;
+            margin-left: 10px; /* Add space between input and button */
+        }
+        
+        #submitEmail:hover {
+            background-color: #555; /* Button hover effect */
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex; /* Use flexbox for the icons */
+            gap: 15px; /* Space between icons */
+        }
+        
+        .social-icons a {
+            text-decoration: none; /* Remove underline */
+            font-size: 24px; /* Adjust size of icons */
+            color: inherit; /* Inherit color */
+        }
+        /* Cool Gradient Heading */
+        h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            background-color: white;
+            background-image: linear-gradient(0deg, white 60%, #000000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: "Geist";
+            --wght-min: 32;
+            --wght-max: 240;
+            animation: breath 1.5s alternate ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        @keyframes breath {
+            0% {
+                font-variation-settings: "wght" var(--wght-min);
+            }
+            100% {
+                font-variation-settings: "wght" var(--wght-max);
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>AI Image Generator</h1>
+    <div class="navbar">
+        <h2>NoobShot AI |</h2>
+        <div class="social-icons">
+            <a href="https://noobshot.ai" target="_blank" title="Noobshot AI">
+                <i class="fab fa-user-robot"></i>
+            </a>
+            <a href="https://github.com/ARYANK-08/text2img-ontheflybro" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/aryankyatham/" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://x.com/kyathamaryan_" target="_blank" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+    </div>
+    
+    <div class="input-group">
         
         {% if not has_api_key %}
         <div class="api-warning">
@@ -166,20 +230,22 @@
         </div>
         {% endif %}
 
-        <div class="input-group">
-            <textarea id="prompt" placeholder="Enter your image description here..."></textarea>
-        </div>
-        
-        <div id="loading">Generating image... Please wait...</div>
+        <textarea id="prompt" placeholder="Enter your image description here..."></textarea>
+        <div id="loading">imagining image... rukhjaa...</div>
         <div id="error" class="error"></div>
+    </div>
 
-        <!-- Separate div for the generated image -->
-        <div class="image-container">
-            <img id="generatedImage" alt="Generated Image">
-        </div>
+    <!-- Separate div for the generated image -->
+    <div class="image-container">
+        <img id="generatedImage" alt="Generated Image">
+    </div>
 
-        <!-- Gallery for previously generated images -->
-        <div class="gallery" id="gallery"></div>
+    <!-- Gallery for previously generated images -->
+    <div class="gallery" id="gallery"></div>
+
+    <div id="emailField">
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <button id="submitEmail">submit</button>
     </div>
 
     <script>
@@ -191,26 +257,35 @@
                 $('.setup-instructions').slideToggle();
             });
 
-            let debounceTimer;
-
-            $('#prompt').on('input', function() {
-                const prompt = $('#prompt').val().trim();
-                $('#generatedImage').hide();
-                $('#error').hide();
-
-                if (debounceTimer) {
-                    clearTimeout(debounceTimer);
+            $('#submitEmail').click(function() {
+                const email = $('#email').val();
+                if (email) {
+                    $.ajax({
+                        url: '/store-email',
+                        method: 'POST',
+                        contentType: 'application/json',  // Set content type to JSON
+                        data: JSON.stringify({ email: email }),  // Convert to JSON string
+                        success: function(response) {
+                            alert('Email submitted successfully: ' + email);
+                            $('#email').val(''); // Clear the input field
+                        },
+                        error: function(xhr) {
+                            alert(xhr.responseJSON?.message || 'An error occurred');
+                        }
+                    });
+                } else {
+                    alert('Please enter your email.');
                 }
-
-                debounceTimer = setTimeout(() => {
-                    if (!prompt) {
-                        $('#error').text('Please enter a prompt').show();
-                        return;
-                    }
-
-                    // Show loading message and hide previous image
+            });
+            
+            // Function to generate an image
+            function generateImage() {
+                const prompt = $('#prompt').val();
+                if (prompt) {
                     $('#loading').show();
+                    $('#error').hide();
 
+                    // AJAX request to generate the image
                     $.ajax({
                         url: '/generate',
                         method: 'POST',
@@ -231,10 +306,12 @@
                             $('#error').text(xhr.responseJSON?.error || 'An error occurred').show();
                         }
                     });
-                }, 500); // 500ms debounce delay
-            });
+                } else {
+                    $('#error').text('Please enter a prompt.').show();
+                }
+            }
 
-            // Update the gallery with thumbnails of previous images
+            // Update the previous images gallery
             function updateGallery() {
                 const gallery = $('#gallery');
                 gallery.empty();
@@ -246,6 +323,13 @@
                     gallery.append(thumb);
                 });
             }
+
+            // Debounce the image generation function
+            let debounceTimeout;
+            $('#prompt').on('input', function() {
+                clearTimeout(debounceTimeout);
+                debounceTimeout = setTimeout(generateImage, 500); // 500ms debounce delay
+            });
         });
     </script>
 </body>
