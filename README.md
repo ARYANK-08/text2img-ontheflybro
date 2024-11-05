@@ -1,5 +1,5 @@
 
-**Noobshot.ai** 🚀: Turn ideas and imagination into images in milliseconds. ✨
+# **Noobshot.ai** 🚀: Turn ideas and imagination into images in milliseconds. ✨
 
 | "A sultry cyberpunk girl engineer with a robotic arm assembles futuristic tech amid soaring skyscrapers and flying vehicles." 🛠️ | "An anime boy with blue hair in neon attire codes on a laptop, with a glowing Lord Shri Krishna behind him." 💻 |
 |:---:|:---:|
