@@ -1,28 +1,67 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
 
-# Flask + Vercel
+```markdown
 
-This example shows how to use Flask 3 on Vercel with Serverless Functions using the [Python Runtime](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python).
+## Images
 
-## Demo
+<div style="display: flex; justify-content: center;">
 
-https://flask-python-template.vercel.app/
+  <div style="margin: 10px;">
+    <img src="https://github.com/user-attachments/assets/2017912e-58ec-4792-952b-60d2570f49c1" alt="Image 1" width="200"/>
+    <p>Image 1 Description</p>
+  </div>
 
-## How it Works
+  <div style="margin: 10px;">
+    <img src="https://github.com/user-attachments/assets/b7f731a5-8455-4b99-be5d-4174bbb0ecf4" alt="Image 2" width="200"/>
+    <p>Image 2 Description</p>
+  </div>
 
-This example uses the Web Server Gateway Interface (WSGI) with Flask to enable handling requests on Vercel with Serverless Functions.
+  <div style="margin: 10px;">
+    <img src="https://github.com/user-attachments/assets/f078afee-d915-44ee-a744-aaa739fa6969" alt="Image 3" width="200"/>
+    <p>Image 3 Description</p>
+  </div>
 
-## Running Locally
+</div>
 
-```bash
-npm i -g vercel
-vercel dev
+# Flask Project Setup
+
+## Prerequisites
+- Python 3.6+
+
+## Quick Start
+
+1. **Clone the Repo:**
+   ```bash
+   git clone <your-repo-url>
+   cd <your-repo-name>
+   ```
+
+2. **Create and Activate Virtual Environment:**
+   ```bash
+   python -m venv venv
+   # Windows: venv\Scripts\activate
+   # macOS/Linux: source venv/bin/activate
+   ```
+
+3. **Install Requirements:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Set Up Environment Variable:**
+   Create a `.env` file:
+   ```
+   TOGETHER_API_KEY=your_together_ai_api_key
+   ```
+
+5. **Run the App:**
+   ```bash
+   flask run
+   ```
+
+## Access
+Visit `http://127.0.0.1:5000` in your browser.
 ```
 
-Your Flask application is now available at `http://localhost:3000`.
-
-## One-Click Deploy
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fexamples%2Ftree%2Fmain%2Fpython%2Fflask3&demo-title=Flask%203%20%2B%20Vercel&demo-description=Use%20Flask%203%20on%20Vercel%20with%20Serverless%20Functions%20using%20the%20Python%20Runtime.&demo-url=https%3A%2F%2Fflask3-python-template.vercel.app%2F&demo-image=https://assets.vercel.com/image/upload/v1669994156/random/flask.png)
+### Explanation:
+- The images are now at the top of the document, making them the first thing users see.
+- Remember to replace `path/to/image1.png`, `path/to/image2.png`, and `path/to/image3.png` with the correct image paths and adjust descriptions as needed.
