@@ -1,6 +1,4 @@
-To display the images side by side in a clean layout, you can use the following Markdown code with inline CSS styles. This will create a flexible container for the images, ensuring they align horizontally:
 
-```markdown
 ## Images
 
 <div style="display: flex; justify-content: center;">
@@ -60,8 +58,4 @@ To display the images side by side in a clean layout, you can use the following 
 
 ## Access
 Visit `http://127.0.0.1:5000` in your browser.
-```
 
-### Key Points:
-- The `<div style="display: flex; justify-content: center;">` wrapper ensures that all images are displayed in a single row centered within the container.
-- Adjust the `width` attribute of each image or the margins to control the spacing and size according to your layout needs.
