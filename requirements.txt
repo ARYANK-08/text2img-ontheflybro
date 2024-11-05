@@ -3,4 +3,4 @@ python-dotenv
 together
 asyncpg
 SQLAlchemy
-'flask[async]'
+flask[async]
