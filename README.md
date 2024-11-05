@@ -1,6 +1,3 @@
-
-```markdown
-
 ## Images
 
 <div style="display: flex; justify-content: center;">
@@ -33,35 +30,3 @@
    ```bash
    git clone <your-repo-url>
    cd <your-repo-name>
-   ```
-
-2. **Create and Activate Virtual Environment:**
-   ```bash
-   python -m venv venv
-   # Windows: venv\Scripts\activate
-   # macOS/Linux: source venv/bin/activate
-   ```
-
-3. **Install Requirements:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Set Up Environment Variable:**
-   Create a `.env` file:
-   ```
-   TOGETHER_API_KEY=your_together_ai_api_key
-   ```
-
-5. **Run the App:**
-   ```bash
-   flask run
-   ```
-
-## Access
-Visit `http://127.0.0.1:5000` in your browser.
-```
-
-### Explanation:
-- The images are now at the top of the document, making them the first thing users see.
-- Remember to replace `path/to/image1.png`, `path/to/image2.png`, and `path/to/image3.png` with the correct image paths and adjust descriptions as needed.
