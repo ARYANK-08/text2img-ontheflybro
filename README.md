@@ -1,4 +1,5 @@
-<div style="display: flex; justify-content: center; flex-wrap: wrap; margin: 20px;">
+<div style="display: flex; justify-content: center;">
+
   <div style="margin: 10px; text-align: center;">
     <img src="https://github.com/user-attachments/assets/2017912e-58ec-4792-952b-60d2570f49c1" alt="Image 1" width="200"/>
     <p>Image 1 Description</p>
@@ -9,11 +10,8 @@
     <p>Image 2 Description</p>
   </div>
 
-  <div style="margin: 10px; text-align: center;">
-    <img src="https://github.com/user-attachments/assets/f078afee-d915-44ee-a744-aaa739fa6969" alt="Image 3" width="200"/>
-    <p>Image 3 Description</p>
-  </div>
 </div>
+
 
 # Flask Project Setup
 
