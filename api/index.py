@@ -2,10 +2,9 @@ from flask import Flask, render_template, request, jsonify
 from together import Together
 import os
 from dotenv import load_dotenv
-from sqlalchemy import text
-from sqlalchemy.ext.asyncio import create_async_engine
-import asyncio
-from urllib.parse import urlparse
+# from sqlalchemy import text
+# from sqlalchemy.ext.asyncio import create_async_engine
+# from urllib.parse import urlparse
 
 # Load environment variables
 load_dotenv()
