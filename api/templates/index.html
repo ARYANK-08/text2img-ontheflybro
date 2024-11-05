@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Image Generator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <style>
+        /* Import custom font */
+        @font-face {
+            font-family: "Geist";
+            src: url("https://pham.codes/d/GeistMonoVF.woff2") format("woff2");
+        }
+
         /* Body Styling */
         body {
             display: flex;
@@ -14,9 +21,9 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #121212;
-            color: #f0f0f0;
-            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #edecec;
+            font-family: "Geist", Arial, sans-serif;
         }
 
         /* Container for centered content */
@@ -26,16 +33,34 @@
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #1c1c1c;
+            background-color: #0b0b0a;
             border: 1px solid #444;
             border-radius: 10px;
+            color: #edecec;
         }
 
-        /* Heading */
+        /* Cool Gradient Heading */
         h1 {
-            font-size: 24px;
-            color: #f0f0f0;
+            font-size: 32px;
             margin-bottom: 20px;
+            background-color: white;
+            background-image: linear-gradient(0deg, white 60%, #000000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: "Geist";
+            --wght-min: 32;
+            --wght-max: 240;
+            animation: breath 1.5s alternate ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        @keyframes breath {
+            0% {
+                font-variation-settings: "wght" var(--wght-min);
+            }
+            100% {
+                font-variation-settings: "wght" var(--wght-max);
+            }
         }
 
         /* Warning styling */
@@ -62,7 +87,7 @@
             padding: 15px;
             font-size: 16px;
             background-color: #1f1f1f;
-            color: #f0f0f0;
+            color: #edecec;
             border: 1px solid #555;
             border-radius: 5px;
             resize: none;
@@ -85,19 +110,41 @@
             font-size: 14px;
         }
 
-        /* Image container */
+        /* Larger image display */
         .image-container {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #555;
-            border-radius: 5px;
+            margin-top: 40px; /* Increased space from the container */
+            text-align: center;
         }
 
-        /* Generated image styling */
         #generatedImage {
             max-width: 100%;
+            max-height: 500px;
             border-radius: 5px;
             display: none;
+        }
+
+        /* Previous Images Gallery */
+        .gallery {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .thumbnail {
+            width: 100px;
+            height: 80px;
+            overflow: hidden;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid #555;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -124,39 +171,44 @@
         </div>
         
         <div id="loading">Generating image... Please wait...</div>
-        <div id="result">
+        <div id="error" class="error"></div>
+
+        <!-- Separate div for the generated image -->
+        <div class="image-container">
             <img id="generatedImage" alt="Generated Image">
         </div>
-        <div id="error" class="error"></div>
+
+        <!-- Gallery for previously generated images -->
+        <div class="gallery" id="gallery"></div>
     </div>
 
     <script>
         $(document).ready(function() {
+            const previousImages = [];
+
             // Toggle setup instructions visibility
             $('.api-warning').click(function() {
                 $('.setup-instructions').slideToggle();
             });
 
-            // Function to debounce the API call
             let debounceTimer;
-            const debounceDelay = 300;  // 300ms delay for quicker response
 
             $('#prompt').on('input', function() {
-                const prompt = $('#prompt').val();
+                const prompt = $('#prompt').val().trim();
+                $('#generatedImage').hide();
+                $('#error').hide();
 
                 if (debounceTimer) {
                     clearTimeout(debounceTimer);
                 }
 
                 debounceTimer = setTimeout(() => {
-                    if (!prompt.trim()) {
+                    if (!prompt) {
                         $('#error').text('Please enter a prompt').show();
                         return;
                     }
 
-                    // Clear previous error and image, show loading message
-                    $('#error').hide();
-                    $('#generatedImage').hide();
+                    // Show loading message and hide previous image
                     $('#loading').show();
 
                     $.ajax({
@@ -165,11 +217,13 @@
                         data: { prompt: prompt },
                         success: function(response) {
                             $('#loading').hide();
-                            
                             if (response.image) {
-                                $('#generatedImage')
-                                    .attr('src', 'data:image/png;base64,' + response.image)
-                                    .show();
+                                const imageUrl = 'data:image/png;base64,' + response.image;
+                                $('#generatedImage').attr('src', imageUrl).show();
+
+                                // Save the generated image in the previous images array
+                                previousImages.push(imageUrl);
+                                updateGallery();
                             }
                         },
                         error: function(xhr) {
@@ -177,8 +231,21 @@
                             $('#error').text(xhr.responseJSON?.error || 'An error occurred').show();
                         }
                     });
-                }, debounceDelay);
+                }, 500); // 500ms debounce delay
             });
+
+            // Update the gallery with thumbnails of previous images
+            function updateGallery() {
+                const gallery = $('#gallery');
+                gallery.empty();
+                previousImages.slice(-4).forEach((image) => { // Show last 4 images as thumbnails
+                    const thumb = $('<div class="thumbnail"><img src="' + image + '"></div>');
+                    thumb.click(() => {
+                        $('#generatedImage').attr('src', image).show();
+                    });
+                    gallery.append(thumb);
+                });
+            }
         });
     </script>
 </body>
