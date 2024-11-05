@@ -303,7 +303,7 @@
                         },
                         error: function(xhr) {
                             $('#loading').hide();
-                            $('#error').text(xhr.responseJSON?.error || 'An error occurred').show();
+                            $('#error').text('Something went wrong!').css('color', 'red').show();
                         }
                     });
                 } else {
