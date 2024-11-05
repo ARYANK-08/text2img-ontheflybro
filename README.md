@@ -1,3 +1,6 @@
+To display the images side by side in a clean layout, you can use the following Markdown code with inline CSS styles. This will create a flexible container for the images, ensuring they align horizontally:
+
+```markdown
 ## Images
 
 <div style="display: flex; justify-content: center;">
@@ -30,3 +33,35 @@
    ```bash
    git clone <your-repo-url>
    cd <your-repo-name>
+   ```
+
+2. **Create and Activate Virtual Environment:**
+   ```bash
+   python -m venv venv
+   # Windows: venv\Scripts\activate
+   # macOS/Linux: source venv/bin/activate
+   ```
+
+3. **Install Requirements:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Set Up Environment Variable:**
+   Create a `.env` file:
+   ```
+   TOGETHER_API_KEY=your_together_ai_api_key
+   ```
+
+5. **Run the App:**
+   ```bash
+   flask run
+   ```
+
+## Access
+Visit `http://127.0.0.1:5000` in your browser.
+```
+
+### Key Points:
+- The `<div style="display: flex; justify-content: center;">` wrapper ensures that all images are displayed in a single row centered within the container.
+- Adjust the `width` attribute of each image or the margins to control the spacing and size according to your layout needs.
