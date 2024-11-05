@@ -1,7 +1,7 @@
 
 ## Images
 
-<div style="display: flex; justify-content: center;">
+<div style="display: flex; justify-content: space-around;">
 
   <div style="margin: 10px;">
     <img src="https://github.com/user-attachments/assets/2017912e-58ec-4792-952b-60d2570f49c1" alt="Image 1" width="200"/>
@@ -58,4 +58,3 @@
 
 ## Access
 Visit `http://127.0.0.1:5000` in your browser.
-
