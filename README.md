@@ -1,7 +1,6 @@
 
 ## Images
-
-<div style="display: flex; justify-content: space-around;">
+<div style="display: flex; justify-content: center;">
 
   <div style="margin: 10px;">
     <img src="https://github.com/user-attachments/assets/2017912e-58ec-4792-952b-60d2570f49c1" alt="Image 1" width="200"/>
@@ -19,7 +18,6 @@
   </div>
 
 </div>
-
 # Flask Project Setup
 
 ## Prerequisites
