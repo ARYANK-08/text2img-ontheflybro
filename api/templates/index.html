@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>noobshot.ai</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
     <style>
         /* Import custom font */
         @font-face {
@@ -28,25 +28,24 @@
             overflow-y: auto; /* Allow body scrolling */
         }
 
+        /* Navbar */
         .navbar {
-            position: fixed; /* Change to fixed */
-            top: 5px; /* Stick to the top */
-            left: 0; /* Align to the left */
-            right: 0; /* Align to the right */
-            text-align: center;
-            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             display: flex;
-            justify-content: center; 
-            align-items: center; 
-            background-color: rgba(0, 0, 0, 0.8); /* Optional: Add background for visibility */
-            z-index: 1000; /* Ensure it is on top */
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
         }
-        
+
         .navbar h2 {
             margin: 0;
             font-size: 28px;
             color: white;
-            margin-right: 20px; /* Add some space between title and icons */
         }
 
         /* Input area */
@@ -54,7 +53,7 @@
             text-align: center;
             width: 90%;
             max-width: 400px;
-            margin: 20px 0;
+            margin: 80px 0 20px; /* Added margin to account for navbar height */
         }
 
         /* Textarea for prompt input */
@@ -133,9 +132,9 @@
             bottom: 20px;
             right: 20px;
             display: flex;
-            align-items: center; /* Center items vertically */
+            align-items: center;
         }
-        
+
         #email {
             background-color: #0b0b0a; /* Match card color */
             border: 1px solid #555;
@@ -144,7 +143,7 @@
             color: #edecec;
             width: 70%; /* Adjust width to fit side by side */
         }
-        
+
         #submitEmail {
             background-color: #444; /* Button background */
             color: #edecec; /* Button text color */
@@ -154,22 +153,23 @@
             cursor: pointer;
             margin-left: 10px; /* Add space between input and button */
         }
-        
+
         #submitEmail:hover {
             background-color: #555; /* Button hover effect */
         }
 
         /* Social Icons */
         .social-icons {
-            display: flex; /* Use flexbox for the icons */
+            display: flex;
             gap: 15px; /* Space between icons */
         }
-        
+
         .social-icons a {
             text-decoration: none; /* Remove underline */
             font-size: 24px; /* Adjust size of icons */
             color: inherit; /* Inherit color */
         }
+
         /* Cool Gradient Heading */
         h2 {
             font-size: 32px;
@@ -189,15 +189,37 @@
             0% {
                 font-variation-settings: "wght" var(--wght-min);
             }
+
             100% {
                 font-variation-settings: "wght" var(--wght-max);
             }
         }
+
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            .navbar h2 {
+                font-size: 20px; /* Smaller font size for mobile */
+            }
+
+            .input-group {
+                margin: 60px 0 10px; /* Adjust input group margin for mobile */
+            }
+
+            h2 {
+                font-size: 24px; /* Smaller font size for mobile */
+            }
+
+            .thumbnail {
+                width: 80px; /* Smaller thumbnails for mobile */
+                height: 60px;
+            }
+        }
     </style>
 </head>
+
 <body>
     <div class="navbar">
-        <h2>NoobShot AI |</h2>
+        <h2>NoobShot AI</h2>
         <div class="social-icons">
             <a href="https://noobshot.ai" target="_blank" title="Noobshot AI">
                 <i class="fab fa-user-robot"></i>
@@ -213,14 +235,13 @@
             </a>
         </div>
     </div>
-    
+
     <div class="input-group">
-        
         {% if not has_api_key %}
-        <div class="api-warning">
+        <div class="api-warning" style="color: #ff4d4d;">
             ⚠️ Together API key not configured. Click here for setup instructions.
         </div>
-        <div class="setup-instructions">
+        <div class="setup-instructions" style="display: none;">
             <h3>Setup Instructions:</h3>
             <ol>
                 <li>Set up your API key in the application environment.</li>
@@ -247,6 +268,8 @@
         <input type="email" id="email" placeholder="Enter your email" required>
         <button id="submitEmail">submit</button>
     </div>
+
+
 
     <script>
         $(document).ready(function() {
@@ -332,5 +355,7 @@
             });
         });
     </script>
+
 </body>
+
 </html>
